@@ -1,0 +1,158 @@
+- statusChips:
+    Control: GroupContainer@1.5.0
+    Variant: AutoLayout
+    Properties:
+      AlignInContainer: =AlignInContainer.Stretch
+      BorderColor: |-
+        =Coalesce(gblAppColors.GrayMedium, RGBA(55, 65, 81, 1))
+      BorderThickness: =1
+      DropShadow: =DropShadow.None
+      Fill: |-
+        =Coalesce(gblAppColors.Primary3, RGBA(22, 27, 34, 1))
+      Height: =88
+      LayoutAlignItems: =LayoutAlignItems.Stretch
+      LayoutDirection: =LayoutDirection.Vertical
+      LayoutGap: =8
+      LayoutMinHeight: =72
+      LayoutMinWidth: =280
+      PaddingBottom: =12
+      PaddingLeft: =14
+      PaddingRight: =14
+      PaddingTop: =12
+      RadiusBottomLeft: =12
+      RadiusBottomRight: =12
+      RadiusTopLeft: =12
+      RadiusTopRight: =12
+      Width: =Parent.Width
+    Children:
+      - statusChips_heading:
+          Control: Label@2.5.1
+          Properties:
+            AlignInContainer: =AlignInContainer.Stretch
+            BorderStyle: =BorderStyle.None
+            Color: |-
+              =Coalesce(gblAppColors.GrayMediumLight, RGBA(148, 163, 184, 1))
+            Fill: =RGBA(0, 0, 0, 0)
+            FillPortions: =0
+            Font: |-
+              =Coalesce(gblAppFonts.Body, Font.'Open Sans')
+            FontWeight: =FontWeight.Semibold
+            Height: =18
+            Size: =11
+            Text: ="Pipeline status"
+            Wrap: =false
+      - statusChips_gallery:
+          Control: Gallery@2.15.0
+          Variant: Horizontal
+          Properties:
+            AlignInContainer: =AlignInContainer.Stretch
+            BorderStyle: =BorderStyle.None
+            DelayItemLoading: =false
+            Fill: =RGBA(0, 0, 0, 0)
+            FillPortions: =0
+            Height: =36
+            Items: |-
+              =Table(
+                  {Id: 1, Label: "Intake", Tone: "neutral", Active: false},
+                  {Id: 2, Label: "Triage", Tone: "info", Active: true},
+                  {Id: 3, Label: "Review", Tone: "warn", Active: false},
+                  {Id: 4, Label: "Decision", Tone: "success", Active: false}
+              )
+            LayoutMinHeight: =36
+            LayoutMinWidth: =0
+            Selectable: =false
+            ShowScrollbar: =false
+            TemplateFill: =RGBA(0, 0, 0, 0)
+            TemplatePadding: =4
+            TemplateSize: =108
+            Width: =Parent.Width
+          Children:
+            - statusChips_item:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  BorderColor: |-
+                    =Switch(
+                        ThisItem.Tone,
+                        "info", Coalesce(gblAppColors.Blue, RGBA(59, 130, 246, 1)),
+                        "warn", Coalesce(gblAppColors.Orange, RGBA(245, 158, 11, 1)),
+                        "success", Coalesce(gblAppColors.Green, RGBA(34, 197, 94, 1)),
+                        Coalesce(gblAppColors.GrayMedium, RGBA(71, 85, 105, 1))
+                    )
+                  BorderThickness: |-
+                    =If(ThisItem.Active, 1, 1)
+                  DropShadow: =DropShadow.None
+                  Fill: |-
+                    =If(
+                        ThisItem.Active,
+                        ColorFade(
+                            Switch(
+                                ThisItem.Tone,
+                                "info", Coalesce(gblAppColors.Blue, RGBA(59, 130, 246, 1)),
+                                "warn", Coalesce(gblAppColors.Orange, RGBA(245, 158, 11, 1)),
+                                "success", Coalesce(gblAppColors.Green, RGBA(34, 197, 94, 1)),
+                                Coalesce(gblAppColors.GrayMedium, RGBA(71, 85, 105, 1))
+                            ),
+                            -70%
+                        ),
+                        RGBA(30, 41, 59, 1)
+                    )
+                  Height: =Parent.TemplateHeight - 4
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutJustifyContent: =LayoutJustifyContent.Center
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  PaddingLeft: =10
+                  PaddingRight: =10
+                  RadiusBottomLeft: =14
+                  RadiusBottomRight: =14
+                  RadiusTopLeft: =14
+                  RadiusTopRight: =14
+                  Width: =Parent.TemplateWidth - 8
+                Children:
+                  - statusChips_dot:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderStyle: =BorderStyle.None
+                        Color: |-
+                          =Switch(
+                              ThisItem.Tone,
+                              "info", Coalesce(gblAppColors.Blue, RGBA(96, 165, 250, 1)),
+                              "warn", Coalesce(gblAppColors.Yellow, RGBA(251, 191, 36, 1)),
+                              "success", Coalesce(gblAppColors.Green, RGBA(74, 222, 128, 1)),
+                              Coalesce(gblAppColors.GrayMediumLight, RGBA(148, 163, 184, 1))
+                          )
+                        Fill: =RGBA(0, 0, 0, 0)
+                        FillPortions: =0
+                        Font: |-
+                          =Coalesce(gblAppFonts.Body, Font.'Open Sans')
+                        Height: =16
+                        Size: =10
+                        Text: ="●"
+                        Width: =14
+                        Wrap: =false
+                  - statusChips_label:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderStyle: =BorderStyle.None
+                        Color: |-
+                          =If(
+                              ThisItem.Active,
+                              Coalesce(gblAppColors.White, RGBA(241, 245, 249, 1)),
+                              Coalesce(gblAppColors.GrayMediumLight, RGBA(203, 213, 225, 1))
+                          )
+                        Fill: =RGBA(0, 0, 0, 0)
+                        FillPortions: =1
+                        Font: |-
+                          =Coalesce(gblAppFonts.Body, Font.'Open Sans')
+                        FontWeight: |-
+                          =If(ThisItem.Active, FontWeight.Semibold, FontWeight.Normal)
+                        Height: =20
+                        Size: =11
+                        Text: |-
+                          =ThisItem.Label
+                        Wrap: =false

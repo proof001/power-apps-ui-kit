@@ -1,0 +1,130 @@
+- kpiCard:
+    Control: GroupContainer@1.5.0
+    Variant: AutoLayout
+    Properties:
+      AlignInContainer: =AlignInContainer.Stretch
+      BorderColor: |-
+        =Coalesce(gblAppColors.GrayMedium, RGBA(55, 65, 81, 1))
+      BorderThickness: =1
+      DropShadow: =DropShadow.Light
+      Fill: |-
+        =Coalesce(gblAppColors.Primary3, RGBA(22, 27, 34, 1))
+      Height: =148
+      LayoutAlignItems: =LayoutAlignItems.Stretch
+      LayoutDirection: =LayoutDirection.Vertical
+      LayoutGap: =6
+      LayoutMinHeight: =148
+      LayoutMinWidth: =220
+      PaddingBottom: =16
+      PaddingLeft: =18
+      PaddingRight: =18
+      PaddingTop: =16
+      RadiusBottomLeft: =12
+      RadiusBottomRight: =12
+      RadiusTopLeft: =12
+      RadiusTopRight: =12
+      Width: =280
+    Children:
+      - kpiCard_title:
+          Control: Label@2.5.1
+          Properties:
+            AlignInContainer: =AlignInContainer.Stretch
+            BorderStyle: =BorderStyle.None
+            Color: |-
+              =Coalesce(gblAppColors.GrayMediumLight, RGBA(148, 163, 184, 1))
+            Fill: =RGBA(0, 0, 0, 0)
+            FillPortions: =0
+            Font: |-
+              =Coalesce(gblAppFonts.Body, Font.'Open Sans')
+            FontWeight: =FontWeight.Semibold
+            Height: =20
+            Size: =11
+            Text: ="Open requests"
+            Wrap: =false
+      - kpiCard_metric:
+          Control: Label@2.5.1
+          Properties:
+            AlignInContainer: =AlignInContainer.Stretch
+            BorderStyle: =BorderStyle.None
+            Color: |-
+              =Coalesce(gblAppColors.White, RGBA(241, 245, 249, 1))
+            Fill: =RGBA(0, 0, 0, 0)
+            FillPortions: =0
+            Font: |-
+              =Coalesce(gblAppFonts.Heading, Font.'Open Sans')
+            FontWeight: =FontWeight.Bold
+            Height: =40
+            Size: =28
+            Text: ="128"
+            Wrap: =false
+      - kpiCard_metaRow:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            AlignInContainer: =AlignInContainer.Stretch
+            BorderStyle: =BorderStyle.None
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(0, 0, 0, 0)
+            FillPortions: =0
+            Height: =28
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Horizontal
+            LayoutGap: =10
+            LayoutMinHeight: =28
+            LayoutMinWidth: =0
+          Children:
+            - kpiCard_deltaChip:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.Center
+                  BorderColor: =RGBA(34, 197, 94, 0.35)
+                  BorderThickness: =1
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(34, 197, 94, 0.15)
+                  FillPortions: =0
+                  Height: =24
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutJustifyContent: =LayoutJustifyContent.Center
+                  LayoutMinHeight: =24
+                  LayoutMinWidth: =0
+                  PaddingLeft: =8
+                  PaddingRight: =8
+                  RadiusBottomLeft: =12
+                  RadiusBottomRight: =12
+                  RadiusTopLeft: =12
+                  RadiusTopRight: =12
+                  Width: =72
+                Children:
+                  - kpiCard_deltaLabel:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderStyle: =BorderStyle.None
+                        Color: =RGBA(74, 222, 128, 1)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        FillPortions: =1
+                        Font: |-
+                          =Coalesce(gblAppFonts.Body, Font.'Open Sans')
+                        FontWeight: =FontWeight.Semibold
+                        Height: =20
+                        Size: =10
+                        Text: ="▲ 12%"
+                        Wrap: =false
+            - kpiCard_subtitle:
+                Control: Label@2.5.1
+                Properties:
+                  AlignInContainer: =AlignInContainer.Stretch
+                  BorderStyle: =BorderStyle.None
+                  Color: |-
+                    =Coalesce(gblAppColors.GrayMedium, RGBA(148, 163, 184, 1))
+                  Fill: =RGBA(0, 0, 0, 0)
+                  FillPortions: =1
+                  Font: |-
+                    =Coalesce(gblAppFonts.Body, Font.'Open Sans')
+                  Height: =20
+                  Size: =11
+                  Text: ="vs last 30 days"
+                  Wrap: =false
