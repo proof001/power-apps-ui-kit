@@ -40,7 +40,7 @@ Standard Next.js App Router — deploy on Vercel with defaults.
 
 ## PaYaml ownership
 
-YAML in this repo is **placeholder** packs keyed to each slot ID so the catalog shell and copy buttons work. **Maker owns the real PaYaml packs** and will replace the stubs when they are drafted.
+Ready-slot YAML lives in [`packs/`](packs/README.md). **Maker owns** those Source Code PaYaml packs. The catalog copies each `.pa.yaml` verbatim into both the Source Code and PaYaml tabs (Studio **Code** / **Import from code**).
 
 ## Out of scope
 

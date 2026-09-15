@@ -1,0 +1,226 @@
+- timelineStepper:
+    Control: GroupContainer@1.5.0
+    Variant: AutoLayout
+    Properties:
+      AlignInContainer: =AlignInContainer.Stretch
+      BorderColor: |-
+        =Coalesce(gblAppColors.GrayMedium, RGBA(55, 65, 81, 1))
+      BorderThickness: =1
+      DropShadow: =DropShadow.None
+      Fill: |-
+        =Coalesce(gblAppColors.Primary3, RGBA(22, 27, 34, 1))
+      Height: =320
+      LayoutAlignItems: =LayoutAlignItems.Stretch
+      LayoutDirection: =LayoutDirection.Vertical
+      LayoutGap: =8
+      LayoutMinHeight: =280
+      LayoutMinWidth: =260
+      PaddingBottom: =14
+      PaddingLeft: =14
+      PaddingRight: =14
+      PaddingTop: =14
+      RadiusBottomLeft: =12
+      RadiusBottomRight: =12
+      RadiusTopLeft: =12
+      RadiusTopRight: =12
+      Width: =320
+    Children:
+      - timelineStepper_heading:
+          Control: Label@2.5.1
+          Properties:
+            AlignInContainer: =AlignInContainer.Stretch
+            BorderStyle: =BorderStyle.None
+            Color: |-
+              =Coalesce(gblAppColors.GrayMediumLight, RGBA(148, 163, 184, 1))
+            Fill: =RGBA(0, 0, 0, 0)
+            FillPortions: =0
+            Font: |-
+              =Coalesce(gblAppFonts.Body, Font.'Open Sans')
+            FontWeight: =FontWeight.Semibold
+            Height: =18
+            Size: =11
+            Text: ="Progress"
+            Wrap: =false
+      - timelineStepper_gallery:
+          Control: Gallery@2.15.0
+          Variant: Vertical
+          Properties:
+            AlignInContainer: =AlignInContainer.Stretch
+            BorderStyle: =BorderStyle.None
+            DelayItemLoading: =false
+            Fill: =RGBA(0, 0, 0, 0)
+            FillPortions: =1
+            Height: =260
+            Items: |-
+              =Table(
+                  {Order: 1, Title: "Submit request", Detail: "Intake complete", State: "done"},
+                  {Order: 2, Title: "Triage & classify", Detail: "Risk and owners set", State: "done"},
+                  {Order: 3, Title: "Compliance review", Detail: "In progress", State: "current"},
+                  {Order: 4, Title: "Decision", Detail: "Awaiting outcome", State: "upcoming"},
+                  {Order: 5, Title: "Pilot / deploy", Detail: "Not started", State: "upcoming"}
+              )
+            LayoutMinHeight: =0
+            LayoutMinWidth: =0
+            Selectable: =false
+            ShowScrollbar: =false
+            TemplateFill: =RGBA(0, 0, 0, 0)
+            TemplatePadding: =0
+            TemplateSize: =52
+            Width: =Parent.Width
+          Children:
+            - timelineStepper_row:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  BorderStyle: =BorderStyle.None
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Height: =Parent.TemplateHeight
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =12
+                  LayoutMinHeight: =0
+                  LayoutMinWidth: =0
+                  Width: =Parent.TemplateWidth
+                Children:
+                  - timelineStepper_rail:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderStyle: =BorderStyle.None
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(0, 0, 0, 0)
+                        FillPortions: =0
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =28
+                        Width: =28
+                      Children:
+                        - timelineStepper_marker:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Center
+                              BorderColor: |-
+                                =Switch(
+                                    ThisItem.State,
+                                    "done", Coalesce(gblAppColors.Green, RGBA(34, 197, 94, 1)),
+                                    "current", Coalesce(gblAppColors.Blue, RGBA(59, 130, 246, 1)),
+                                    Coalesce(gblAppColors.GrayMedium, RGBA(71, 85, 105, 1))
+                                )
+                              BorderThickness: =1
+                              Color: |-
+                                =Coalesce(gblAppColors.White, RGBA(241, 245, 249, 1))
+                              DisplayMode: =DisplayMode.View
+                              Fill: |-
+                                =Switch(
+                                    ThisItem.State,
+                                    "done", Coalesce(gblAppColors.Green, RGBA(34, 197, 94, 1)),
+                                    "current", Coalesce(gblAppColors.Blue, RGBA(59, 130, 246, 1)),
+                                    RGBA(30, 41, 59, 1)
+                                )
+                              Font: |-
+                                =Coalesce(gblAppFonts.Body, Font.'Open Sans')
+                              FontWeight: =FontWeight.Semibold
+                              Height: =24
+                              HoverBorderColor: |-
+                                =Self.BorderColor
+                              HoverColor: |-
+                                =Self.Color
+                              HoverFill: |-
+                                =Self.Fill
+                              PressedBorderColor: |-
+                                =Self.BorderColor
+                              PressedColor: |-
+                                =Self.Color
+                              PressedFill: |-
+                                =Self.Fill
+                              RadiusBottomLeft: =12
+                              RadiusBottomRight: =12
+                              RadiusTopLeft: =12
+                              RadiusTopRight: =12
+                              Size: =10
+                              Text: |-
+                                =If(ThisItem.State = "done", "✓", Text(ThisItem.Order))
+                              Width: =24
+                        - timelineStepper_connector:
+                            Control: Label@2.5.1
+                            Properties:
+                              Align: =Align.Center
+                              AlignInContainer: =AlignInContainer.Center
+                              BorderStyle: =BorderStyle.None
+                              Color: |-
+                                =If(
+                                    ThisItem.State = "done",
+                                    Coalesce(gblAppColors.Green, RGBA(34, 197, 94, 1)),
+                                    Coalesce(gblAppColors.GrayMedium, RGBA(71, 85, 105, 1))
+                                )
+                              Fill: =RGBA(0, 0, 0, 0)
+                              FillPortions: =0
+                              Font: |-
+                                =Coalesce(gblAppFonts.Body, Font.'Open Sans')
+                              Height: =20
+                              Size: =10
+                              Text: ="│"
+                              Visible: |-
+                                =ThisItem.Order < 5
+                              Width: =24
+                              Wrap: =false
+                  - timelineStepper_copy:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderStyle: =BorderStyle.None
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(0, 0, 0, 0)
+                        FillPortions: =1
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =2
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =0
+                        PaddingBottom: =4
+                        PaddingTop: =4
+                      Children:
+                        - timelineStepper_title:
+                            Control: Label@2.5.1
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Stretch
+                              BorderStyle: =BorderStyle.None
+                              Color: |-
+                                =Switch(
+                                    ThisItem.State,
+                                    "upcoming", Coalesce(gblAppColors.GrayMedium, RGBA(148, 163, 184, 1)),
+                                    Coalesce(gblAppColors.White, RGBA(241, 245, 249, 1))
+                                )
+                              Fill: =RGBA(0, 0, 0, 0)
+                              FillPortions: =0
+                              Font: |-
+                                =Coalesce(gblAppFonts.Body, Font.'Open Sans')
+                              FontWeight: |-
+                                =If(ThisItem.State = "current", FontWeight.Semibold, FontWeight.Normal)
+                              Height: =18
+                              Size: =12
+                              Text: |-
+                                =ThisItem.Title
+                              Wrap: =false
+                        - timelineStepper_detail:
+                            Control: Label@2.5.1
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Stretch
+                              BorderStyle: =BorderStyle.None
+                              Color: |-
+                                =Coalesce(gblAppColors.GrayMedium, RGBA(100, 116, 139, 1))
+                              Fill: =RGBA(0, 0, 0, 0)
+                              FillPortions: =0
+                              Font: |-
+                                =Coalesce(gblAppFonts.Body, Font.'Open Sans')
+                              Height: =16
+                              Size: =10
+                              Text: |-
+                                =ThisItem.Detail
+                              Wrap: =false

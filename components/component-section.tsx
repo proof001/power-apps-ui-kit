@@ -22,9 +22,11 @@ export function ComponentSection({ slot }: { slot: ReadySlot }) {
       </div>
 
       <p className="mb-4 text-[13px] leading-6 text-muted">
-        Copy YAML, then in Power Apps Studio open{" "}
-        <span className="text-foreground">Components → Import from code</span> and
-        paste. Placeholder pack only — Maker replaces this with the real PaYaml.
+        Copy the Maker Source Code pack, then in Power Apps Studio paste via{" "}
+        <span className="text-foreground">Code</span> view or{" "}
+        <span className="text-foreground">Components → Import from code</span>.
+        Both tabs below are the same pack (roots: kpiCard / statusChips /
+        timelineStepper).
       </p>
 
       <YamlPanel sourceCode={slot.sourceCode} paYaml={slot.paYaml} />
